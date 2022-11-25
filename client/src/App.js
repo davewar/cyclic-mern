@@ -41,7 +41,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className='container-lg border border-primary h-100 '>
+		<div className='container-lg  h-100 '>
 			<Router>
 				<Pages />
 			</Router>
