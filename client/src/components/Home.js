@@ -5,7 +5,7 @@ const Home = () => {
 		<div className='container'>
 			<div className='row'>
 				<div className='col-xs-12'>
-					<h1 className='text-center mt-5 '>Welcome to My fullstack website</h1>
+					<h1 className='text-center mt-5 '>Welcome to My fullstack Website</h1>
 
 					<h5 className='mt-5'>FrontEnd</h5>
 

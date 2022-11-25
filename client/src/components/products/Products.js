@@ -88,11 +88,18 @@ const Products = () => {
 
 			<Filters />
 
-			<div className='d-flex flex-row flex-wrap'>
+			<div className='d-flex flex-row flex-wrap justify-content-between col-xs-12 col-sm-12 p-0 '>
 				{newData.map((item) => {
 					//    console.log();
 					return (
-						<div className='card m-3' key={item._id} style={styledObj}>
+						<div
+							className='card col-xs-12 col-sm-12 col-md-5 mb-3
+							ml-auto mr-auto p-0  '
+							id='card-css'
+							// className='card col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3 p-0 '
+							key={item._id}
+							style={styledObj}
+						>
 							<img src={item.image} className='card-img-top' alt='' />
 
 							<div className='card-body'>
