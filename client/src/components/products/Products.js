@@ -93,7 +93,7 @@ const Products = () => {
 
 			<Filters />
 
-			<div className='container d-flex flex-row flex-wrap justify-content-between col-xs-12  col-sm-12 p-0 border border-success'>
+			<div className='container d-flex flex-row flex-wrap justify-content-between col-xs-12  col-sm-12 p-0 '>
 				{newData.map((item) => {
 					//    console.log();
 					return (

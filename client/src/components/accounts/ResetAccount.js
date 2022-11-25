@@ -66,7 +66,7 @@ const ResetAccount = () => {
 	};
 
 	return (
-		<div className='container-lg border border-warning pt-5 pb-5 mt-6 '>
+		<div className='container-lg  pt-5 pb-5 mt-6 '>
 			<div className='row d-flex justify-content-center align-items-center '>
 				<div className='col-xs-12  '>
 					<h2 className='text-start mt-3'>Forgot Password</h2>
