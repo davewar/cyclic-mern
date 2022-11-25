@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/user';
-import * as ROUTES from '../../constants/routes';
 
 const Login = () => {
 	const { setAccessToken } = useContext(UserContext); //global user
@@ -18,9 +17,11 @@ const Login = () => {
 		setSignInErr('');
 
 		const user = {};
+		/*eslint-disable */
 		const emailRegEx = RegExp(
 			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		);
+		/*eslint-enable */
 		user[name] = e.target.value;
 		// validations
 		switch (name) {
@@ -75,8 +76,8 @@ const Login = () => {
 	};
 
 	return (
-		<div className='container '>
-			<div className='col d-flex mt-6 justify-content-center align-items-center  '>
+		<div className=' dcontainer-lg border border-warning pt-5 pb-5 mt-6 '>
+			<div className='row d-flex justify-content-center align-items-center '>
 				<div className='col-xs-12  sign-in'>
 					<h2 className='text-start mt-3'>Sign In</h2>
 					{signInErr && (

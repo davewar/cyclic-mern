@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { ShoppingContext } from '../../contexts/shopping';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaTrashAlt } from 'react-icons/fa';
 // import  PaypalButton from './Paypal'
 import { clearStorage } from '../../utils/storage';
@@ -18,13 +18,14 @@ const Cart = () => {
 		total,
 		getTotal,
 	} = useContext(ShoppingContext); //global
-	const { accessToken, isLogged, isAdmin } = useContext(UserContext);
+	const { accessToken } = useContext(UserContext);
 
 	useEffect(() => {
 		let IsActive = false;
 		getTotal();
-
+		/* eslint-disable */
 		return () => (IsActive = true);
+		/* eslint-enable */
 	}, [cart]);
 
 	if (!cart || cart.length === 0) {
@@ -63,9 +64,9 @@ const Cart = () => {
 		clearStorage();
 	};
 
-	if (!isLogged) {
-		return <Redirect to='/signin' />;
-	}
+	// if (!isLogged) {
+	// 	return <Redirect to='/signin' />;
+	// }
 
 	return (
 		<>

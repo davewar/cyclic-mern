@@ -2,8 +2,8 @@ import React from 'react';
 
 const Home = () => {
 	return (
-		<div className='container'>
-			<div className='row'>
+		<div className='container-lg border border-warning pt-5 pb-5 mt-6 '>
+			<div className='row d-flex justify-content-center align-items-center '>
 				<div className='col-xs-12'>
 					<h1 className='text-center mt-5 '>Welcome to My fullstack Website</h1>
 

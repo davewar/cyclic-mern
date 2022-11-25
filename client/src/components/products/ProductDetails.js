@@ -31,8 +31,9 @@ const ProductDetails = () => {
 			console.log(err.message);
 			setError(true);
 		}
-
+		/*eslint-disable */
 		return () => (isActive = true);
+		/*eslint-enable */
 	}, []);
 
 	const { _id, title, description, price, image } = product;

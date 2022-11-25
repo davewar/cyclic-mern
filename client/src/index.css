@@ -18,6 +18,11 @@ code {
 		monospace;
 }
 
-.parent {
+#body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
 	min-height: 100vh;
 }

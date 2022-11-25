@@ -1,14 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 // import Cookies from 'js-cookie';
 
-import { UserContext } from '../../contexts/user';
-
 const Register = () => {
-	const history = useHistory();
-
-	const { setAccessToken } = useContext(UserContext); //global user
-
 	const [signUpErr, setSignUpErr] = useState('');
 
 	const [name, setname] = useState('');
@@ -25,9 +19,11 @@ const Register = () => {
 		setSignUpErr('');
 
 		const user = {};
+		/*eslint-disable */
 		const emailRegEx = RegExp(
 			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		);
+		/*eslint-enable */
 		user[name] = e.target.value;
 		// validations
 		switch (name) {
@@ -105,8 +101,8 @@ const Register = () => {
 	};
 
 	return (
-		<div className='container h-100 parent '>
-			<div className='col d-flex flex-column mt-6 justify-content-center align-items-center h-100 '>
+		<div className='container-lg border border-warning pt-5 pb-5 mt-6 '>
+			<div className='row d-flex justify-content-center align-items-center '>
 				<div className='col-xs-12 sign-in '>
 					<h2 className='text-center'>Create an Account</h2>
 					{signUpErr && (

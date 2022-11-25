@@ -34,7 +34,7 @@ const Pages = () => {
 				<Switch>
 					<Route exact path={ROUTES.HOME} component={Home} />
 
-					<Route exact path={ROUTES.PRODUCTS} exact component={Products} />
+					<Route exact path={ROUTES.PRODUCTS} component={Products} />
 					<Route
 						exact
 						path={ROUTES.PRODUCTS + '/:id'}
@@ -42,7 +42,7 @@ const Pages = () => {
 					/>
 					<Route path={ROUTES.CART} component={Cart}></Route>
 
-					<Route path={ROUTES.HISTORY} exact component={History} />
+					<Route exact path={ROUTES.HISTORY} component={History} />
 					<Route
 						exact
 						path={ROUTES.HISTORY + '/:id'}

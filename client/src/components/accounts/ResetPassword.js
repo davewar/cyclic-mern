@@ -1,13 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
-
-import { UserContext } from '../../contexts/user';
+import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const ResetPassword = () => {
-	const history = useHistory();
 	const { id } = useParams();
-
-	const { setAccessToken } = useContext(UserContext); //global user
 
 	const [signUpErr, setSignUpErr] = useState('');
 
@@ -23,9 +18,12 @@ const ResetPassword = () => {
 		setSignUpErr('');
 
 		const user = {};
+		/* eslint-disable */
 		const emailRegEx = RegExp(
 			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		);
+
+		/* eslint-enable  */
 		user[name] = e.target.value;
 		// validations
 		switch (name) {
@@ -94,9 +92,9 @@ const ResetPassword = () => {
 	};
 
 	return (
-		<div className='container '>
-			<div className='row mt-5  justify-content-center align-items-center '>
-				<div className='col-xs-12 sign-in '>
+		<div className='container-lg border border-warning pt-5 pb-5 mt-6 '>
+			<div className='row d-flex justify-content-center align-items-center '>
+				<div className='col-xs-12 '>
 					<h2 className='text-center'>Create your Password</h2>
 					{signUpErr && (
 						<div className='alert alert-danger text-center'>

@@ -1,64 +1,54 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import {useParams}from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 
 const ActivateAccount = () => {
+	const [err, setErr] = useState('');
+	const [success, setSuccess] = useState('');
 
-    const [err, setErr] = useState('')
-    const [success, setSuccess] = useState('')
+	// /activation
+	const { id } = useParams();
+	console.log(id);
 
-    // /activation
-    const {id} = useParams()
-    console.log(id);
+	const validate = async (id) => {
+		try {
+			const res = await fetch('/user/activation', {
+				method: 'POST',
+				body: JSON.stringify({ accesstoken: id }),
+				headers: { 'Content-Type': 'application/json', credentials: 'include' },
+			});
 
-    const validate = async (id)=>{
-       
+			const data = await res.json();
+			console.log(data);
 
-                try {
+			if (data.errors) {
+				setErr(data.errors);
+			} else {
+				setSuccess(data.msg);
+			}
+		} catch (err) {
+			console.log(err.message);
+			setErr(err.message);
+		}
+	};
 
-                    const res = await fetch('/user/activation', { 
-                    method: 'POST', 
-                    body: JSON.stringify({accesstoken: id}),
-                    headers: {'Content-Type': 'application/json', credentials: 'include' }
-                    });
+	useEffect(() => {
+		let isActive = true;
+		validate(id);
 
-                    const data = await res.json();                
-                    console.log(data);
-                   
+		return () => {
+			/*eslint-disable */
+			isActive = false;
+			/*eslint-enable */
+		};
+	}, [id]);
 
-                    if(data.errors){
-                            setErr(data.errors)
+	return (
+		<div className='alert'>
+			<p className='text-danger'>{err}</p>
+			<p className='text-success'>{success}</p>
+		</div>
+	);
+};
 
-                    } else{
-
-                         setSuccess(data.msg)
-                    }
-
-        
-                 } catch (err) {
-                        console.log(err.message);
-                        setErr(err.message)
-                 }
-
-    
-  }
-
-    
-
-    useEffect(() => {
-        let isActive = true
-            validate(id)
-
-        return ()=> isActive= false
-    }, [id])
-
-
-    return (
-        <div className="alert">
-          <p className="text-danger">{err}</p>
-          <p className="text-success">{success}</p>
-        </div>
-    )
-}
-
-export default ActivateAccount
+export default ActivateAccount;

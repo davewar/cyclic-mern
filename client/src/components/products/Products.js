@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 import { ShoppingContext } from '../../contexts/shopping';
 import Filters from './Filters';
 import { UserContext } from '../../contexts/user';
-import Msgbox from './Msgbox';
 
 const Products = () => {
-	const { msg, addItem, products, setProducts, search, categorySelection } =
+	const { addItem, products, setProducts, search, categorySelection } =
 		useContext(ShoppingContext); //global
 
 	const { isAdmin, accessToken } = useContext(UserContext);
@@ -62,9 +61,11 @@ const Products = () => {
 		let isActive = true;
 
 		getProducts();
+		/*eslint-disable */
 		return () => {
 			isActive = false;
 		};
+		/*eslint-enable */
 	}, []);
 
 	if (categorySelection === 'all') {
@@ -84,17 +85,21 @@ const Products = () => {
 		<>
 			{loading && <div>Loading........</div>}
 
-			{error && <div>Error with loading of page. Please refresh page.</div>}
+			{error && (
+				<div className='mb-2'>
+					Error with loading of page. Please refresh page.
+				</div>
+			)}
 
 			<Filters />
 
-			<div className='d-flex flex-row flex-wrap justify-content-between col-xs-12 col-sm-12 p-0 '>
+			<div className='container d-flex flex-row flex-wrap justify-content-between col-xs-12  col-sm-12 p-0 border border-success'>
 				{newData.map((item) => {
 					//    console.log();
 					return (
 						<div
-							className='card col-xs-12 col-sm-12 col-md-5 mb-3
-							ml-auto mr-auto p-0  '
+							className='card col-xs-12 col-sm-12 col-md-12 col-lg-5  mb-5 mt-5
+							 p-0  '
 							id='card-css'
 							// className='card col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3 p-0 '
 							key={item._id}
