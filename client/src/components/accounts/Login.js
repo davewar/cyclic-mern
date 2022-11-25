@@ -77,7 +77,7 @@ const Login = () => {
 
 	return (
 		<div className=' dcontainer-lg  pt-5 pb-5 mt-6 '>
-			<div className='row d-flex justify-content-center align-items-center '>
+			<div className='col d-flex justify-content-center align-items-center '>
 				<div className='col-xs-12  sign-in'>
 					<h2 className='text-start mt-3'>Sign In</h2>
 					{signInErr && (
