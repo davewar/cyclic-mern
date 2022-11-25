@@ -148,8 +148,8 @@ const Products = () => {
 };
 
 const styledObj = {
-	width: '40%',
-	minWidth: '500px',
+	// width: '40%',
+	// minWidth: '500px',
 };
 
 export default Products;
