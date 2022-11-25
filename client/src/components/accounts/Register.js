@@ -106,7 +106,7 @@ const Register = () => {
 
 	return (
 		<div className='container h-100 parent '>
-			<div className='col d-flex flex-column border justify-content-center align-items-center h-100 '>
+			<div className='col d-flex flex-column mt-6 justify-content-center align-items-center h-100 '>
 				<div className='col-xs-12 sign-in '>
 					<h2 className='text-center'>Create an Account</h2>
 					{signUpErr && (
