@@ -6,7 +6,8 @@ import ShoppingProvider from './contexts/shopping';
 import UserProvider from './contexts/user';
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
-if (process.env.NODE_ENV === 'production') disableReactDevTools();
+if (process.env.REACT_APP_NODE_ENV === 'production') disableReactDevTools();
+
 ReactDOM.render(
 	<React.StrictMode>
 		<UserProvider>
