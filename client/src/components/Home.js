@@ -34,7 +34,7 @@ const Home = () => {
 					<button
 						className='btn btn-primary'
 						onClick={() => {
-							window.open('https://github.com/davewar/React_shop_Nodemailer');
+							window.open('https://github.com/davewar?tab=repositories');
 						}}
 					>
 						GitHub Code

@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../contexts/shopping';
 import { Link } from 'react-router-dom';
 import { FaTrashAlt } from 'react-icons/fa';
-// import  PaypalButton from './Paypal'
-import { clearStorage } from '../../utils/storage';
+import PayPal from './PayPal';
 
+import { clearStorage } from '../../utils/storage';
 import { UserContext } from '../../contexts/user';
 
 const Cart = () => {
@@ -18,7 +18,10 @@ const Cart = () => {
 		total,
 		getTotal,
 	} = useContext(ShoppingContext); //global
-	const { accessToken } = useContext(UserContext);
+
+	const { accessToken, isLogged, isAdmin } = useContext(UserContext);
+
+	const [checkout, setCheckOut] = useState(false);
 
 	useEffect(() => {
 		let IsActive = false;
@@ -40,8 +43,10 @@ const Cart = () => {
 	}
 
 	const tranSuccess = async (payment) => {
-		// console.log(payment);
-		const { paymentID, address } = payment;
+		// console.log('DW transsucess', payment);
+
+		let paymentID = payment.id;
+		let address = payment.payer.address;
 
 		const res = await fetch('/api/payments', {
 			method: 'POST',
@@ -55,7 +60,6 @@ const Cart = () => {
 
 		const data = await res.json();
 		// console.log(data);
-
 		alert('You have successfully placed an order.');
 
 		// clear cart
@@ -63,10 +67,6 @@ const Cart = () => {
 		//delete local storage
 		clearStorage();
 	};
-
-	// if (!isLogged) {
-	// 	return <Redirect to='/signin' />;
-	// }
 
 	return (
 		<>
@@ -88,21 +88,43 @@ const Cart = () => {
 			</div>
 
 			<div className='row mb-5'>
-				<div className='col-12 d-flex justify-content-end'>
-					{/* <PaypalButton
-                                total={total}
-                                tranSuccess={tranSuccess} />  */}
+				<div className='col-12 d-flex justify-content-end '>
+					<div className='payment-div'>
+						{checkout && isLogged ? (
+							<PayPal total={total} tranSuccess={tranSuccess} />
+						) : null}
+
+						<button
+							className='btn btn-secondary '
+							onClick={() => {
+								setCheckOut((prev) => !prev);
+								console.log('clicked');
+							}}
+						>
+							Checkout
+						</button>
+					</div>
+				</div>
+
+				<div className='col-12 d-flex justify-content-end '>
+					{checkout && !isLogged ? (
+						<>
+							<br />
+							<p className='mt-2 text-secondary'>Please Register / Signin</p>
+						</>
+					) : null}
 				</div>
 			</div>
 
 			<div className='container'>
-				<div className='d-flex flex-row flex-wrap justify-content-between'>
+				{/* <div className='d-flex flex-row flex-wrap justify-content-between'> */}
+				<div className='container d-flex flex-row flex-wrap justify-content-between col-xs-12  col-sm-12 p-0 '>
 					{cart
 						? cart.map((item) => {
 								return (
 									<div
 										key={item._id}
-										className='card mt-2 mb-4 t h-25'
+										className='card col-xs-12 col-sm-12 col-md-12 col-lg-5  mb-5 mt-5 p-0  '
 										style={styledObj}
 									>
 										<img src={item.image} className='card-img-top' alt='' />
@@ -162,8 +184,8 @@ const Cart = () => {
 };
 
 const styledObj = {
-	width: '40%',
-	minWidth: '450px',
+	// width: '40%',
+	// minWidth: '450px',
 };
 
 export default Cart;

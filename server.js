@@ -15,7 +15,8 @@ app.use(express.json());
 // app.use(helmet());
 // app.disable('x-powered-by')
 
-// app.use(cors());
+// use in test
+
 // app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 // connect to db
